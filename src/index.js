@@ -12,7 +12,6 @@ const LOADER_DELAY = 500;
  * @description Personality Tool's input and output data format
  * @property {string} name — person's name
  * @property {string} description - person's description
- * @property {string} link - link to person's website
  * @property {string} photo - person's photo url
  */
 
@@ -24,7 +23,6 @@ const LOADER_DELAY = 500;
  * @property {string} types - available mime-types
  * @property {string} namePlaceholder - placeholder for name field
  * @property {string} descriptionPlaceholder - description placeholder
- * @property {string} linkPlaceholder - link placeholder
  */
 
 /**
@@ -53,8 +51,7 @@ export default class Personality {
       wrapper: null,
       name: null,
       description: null,
-      link: null,
-      photo: null
+      photo: null,
     };
 
     this.config = {
@@ -63,7 +60,6 @@ export default class Personality {
       types: config.types || 'image/*',
       namePlaceholder: config.namePlaceholder || 'Name',
       descriptionPlaceholder: config.descriptionPlaceholder || 'Description',
-      linkPlaceholder: config.linkPlaceholder || 'Link'
     };
 
     /**
@@ -76,8 +72,8 @@ export default class Personality {
      */
     this.uploader = new Uploader({
       config: this.config,
-      onUpload: (response) => this.onUpload(response),
-      onError: (error) => this.uploadingFailed(error)
+      onUpload: response => this.onUpload(response),
+      onError: error => this.uploadingFailed(error),
     });
   }
 
@@ -89,16 +85,19 @@ export default class Personality {
   static get toolbox() {
     return {
       icon: ToolboxIcon,
-      title: 'Personality'
+      title: 'Personality',
     };
   }
 
   /**
    * File uploading callback
+   *
    * @param {UploadResponseFormat} response
    */
   onUpload(response) {
-    const { body: { success, file } } = response;
+    const {
+      body: { success, file },
+    } = response;
 
     if (success && file && file.url) {
       this.data.photo = file.url;
@@ -137,6 +136,7 @@ export default class Personality {
 
   /**
    * If file uploading failed, remove loader and show notification
+   *
    * @param {string} errorMessage -  error message
    */
   uploadingFailed(errorMessage) {
@@ -144,7 +144,7 @@ export default class Personality {
 
     this.api.notifier.show({
       message: errorMessage,
-      style: 'error'
+      style: 'error',
     });
   }
 
@@ -163,54 +163,201 @@ export default class Personality {
       wrapper: 'cdx-personality',
       name: 'cdx-personality__name',
       photo: 'cdx-personality__photo',
-      link: 'cdx-personality__link',
-      description: 'cdx-personality__description'
+      description: 'cdx-personality__description',
     };
   }
 
   /**
    * Return Block data
+   *
    * @param {HTMLElement} toolsContent
-   * @return {PersonalityToolData}
+   * @returns {PersonalityToolData}
    */
   save(toolsContent) {
     const name = toolsContent.querySelector(`.${this.CSS.name}`).textContent;
-    const description = toolsContent.querySelector(`.${this.CSS.description}`).textContent;
-    const link = toolsContent.querySelector(`.${this.CSS.link}`).textContent;
+    const description = toolsContent.querySelector(`.${this.CSS.description}`)
+      .innerHTML;
     const photo = this.data.photo;
 
     /**
      * Fill missing fields with empty strings
      */
+
     Object.assign(this.data, {
       name: name.trim() || '',
       description: description.trim() || '',
-      link: link.trim() || '',
-      photo: photo || ''
+      photo: photo || '',
     });
 
     return this.data;
   }
 
+  static get sanitize/**
+                      *
+                      *//**
+                         *
+                         *//**
+                            *
+                            *//**
+                               *
+                               *//**
+                                  *
+                                  *//**
+                                     *
+                                     *//**
+                                        *
+                                        *//**
+                                           *
+                                           *//**
+                                              *
+                                              *//**
+                                                 *
+                                                 *//**
+                                                    *
+                                                    *//**
+                                                       *
+                                                       *//**
+                                                          *
+                                                          *//**
+                                                             *
+                                                             *//**
+                                                                *
+                                                                *//**
+                                                                   *
+                                                                   *//**
+                                                                      *
+                                                                      *//**
+                                                                         *
+                                                                         *//**
+                                                                            *
+                                                                            *//**
+                                                                               *
+                                                                               *//**
+                                                                                  *
+                                                                                  *//**
+                                                                                     *
+                                                                                     *//**
+                                                                                        *
+                                                                                        *//**
+                                                                                           *
+                                                                                           *//**
+                                                                                              *
+                                                                                              *//**
+                                                                                                 *
+                                                                                                 *//**
+                                                                                                    *
+                                                                                                    *//**
+                                                                                                       *
+                                                                                                       *//**
+                                                                                                          *
+                                                                                                          *//**
+                                                                                                             *
+                                                                                                             *//**
+                                                                                                                *
+                                                                                                                *//**
+                                                                                                                   *
+                                                                                                                   *//**
+                                                                                                                      *
+                                                                                                                      *//**
+                                                                                                                         *
+                                                                                                                         *//**
+                                                                                                                            *
+                                                                                                                            *//**
+                                                                                                                               *
+                                                                                                                               *//**
+                                                                                                                                  *
+                                                                                                                                  *//**
+                                                                                                                                     *
+                                                                                                                                     *//**
+                                                                                                                                        *
+                                                                                                                                        *//**
+                                                                                                                                           *
+                                                                                                                                           *//**
+                                                                                                                                              *
+                                                                                                                                              *//**
+                                                                                                                                                 *
+                                                                                                                                                 *//**
+                                                                                                                                                    *
+                                                                                                                                                    *//**
+                                                                                                                                                       *
+                                                                                                                                                       *//**
+                                                                                                                                                          *
+                                                                                                                                                          *//**
+                                                                                                                                                             *
+                                                                                                                                                             *//**
+                                                                                                                                                                *
+                                                                                                                                                                *//**
+                                                                                                                                                                   *
+                                                                                                                                                                   *//**
+                                                                                                                                                                      *
+                                                                                                                                                                      *//**
+                                                                                                                                                                         *
+                                                                                                                                                                         *//**
+                                                                                                                                                                            *
+                                                                                                                                                                            *//**
+                                                                                                                                                                               *
+                                                                                                                                                                               *//**
+                                                                                                                                                                                  *
+                                                                                                                                                                                  *//**
+                                                                                                                                                                                     *
+                                                                                                                                                                                     *//**
+                                                                                                                                                                                        *
+                                                                                                                                                                                        *//**
+                                                                                                                                                                                           *
+                                                                                                                                                                                           *//**
+                                                                                                                                                                                              *
+                                                                                                                                                                                              *//**
+                                                                                                                                                                                                 *
+                                                                                                                                                                                                 *//**
+                                                                                                                                                                                                    *
+                                                                                                                                                                                                    *//**
+                                                                                                                                                                                                       *
+                                                                                                                                                                                                       *//**
+                                                                                                                                                                                                          *
+                                                                                                                                                                                                          *//**
+                                                                                                                                                                                                             *
+                                                                                                                                                                                                             *//**
+                                                                                                                                                                                                                *
+                                                                                                                                                                                                                *//**
+                                                                                                                                                                                                                   *
+                                                                                                                                                                                                                   *//**
+                                                                                                                                                                                                                      *
+                                                                                                                                                                                                                      *//**
+                                                                                                                                                                                                                         *
+                                                                                                                                                                                                                         *//**
+                                                                                                                                                                                                                            *
+                                                                                                                                                                                                                            *//**
+                                                                                                                                                                                                                               *
+                                                                                                                                                                                                                               *//**
+                                                                                                                                                                                                                                  *
+                                                                                                                                                                                                                                  *//**
+                                                                                                                                                                                                                                     *
+                                                                                                                                                                                                                                     *//**
+ *
+ */() {
+    return {
+      description: {
+        br: true,
+      },
+    };
+  }
+
   /**
    * Renders Block content
-   * @return {HTMLDivElement}
+   *
+   * @returns {HTMLDivElement}
    */
   render() {
-    const { name, description, photo, link } = this.data;
+    const { name, description, photo } = this.data;
 
     this.nodes.wrapper = this.make('div', this.CSS.wrapper);
 
     this.nodes.name = this.make('div', this.CSS.name, {
-      contentEditable: true
+      contentEditable: true,
     });
 
     this.nodes.description = this.make('div', this.CSS.description, {
-      contentEditable: true
-    });
-
-    this.nodes.link = this.make('div', this.CSS.link, {
-      contentEditable: true
+      contentEditable: true,
     });
 
     this.nodes.photo = this.make('div', this.CSS.photo);
@@ -220,7 +367,7 @@ export default class Personality {
     }
 
     if (description) {
-      this.nodes.description.textContent = description;
+      this.nodes.description.innerHTML = description;
     } else {
       this.nodes.description.dataset.placeholder = this.config.descriptionPlaceholder;
     }
@@ -231,30 +378,24 @@ export default class Personality {
       this.nodes.name.dataset.placeholder = this.config.namePlaceholder;
     }
 
-    if (link) {
-      this.nodes.link.textContent = link;
-    } else {
-      this.nodes.link.dataset.placeholder = this.config.linkPlaceholder;
-    }
-
     this.nodes.photo.addEventListener('click', () => {
       this.uploader.uploadSelectedFile({
         onPreview: () => {
           this.addLoader();
-        }
+        },
       });
     });
 
     this.nodes.wrapper.appendChild(this.nodes.photo);
     this.nodes.wrapper.appendChild(this.nodes.name);
     this.nodes.wrapper.appendChild(this.nodes.description);
-    this.nodes.wrapper.appendChild(this.nodes.link);
 
     return this.nodes.wrapper;
   }
 
   /**
    * Validate saved data
+   *
    * @param {PersonalityToolData} savedData - tool's data
    * @returns {boolean} - validation result
    */
@@ -262,18 +403,16 @@ export default class Personality {
     /**
      * Return false if fields are empty
      */
-    return savedData.name ||
-        savedData.description ||
-        savedData.link ||
-        savedData.photo;
+    return savedData.name || savedData.description || savedData.photo;
   }
 
   /**
    * Helper method for elements creation
+   *
    * @param tagName
    * @param classNames
    * @param attributes
-   * @return {HTMLElement}
+   * @returns {HTMLElement}
    */
   make(tagName, classNames = null, attributes = {}) {
     const el = document.createElement(tagName);
